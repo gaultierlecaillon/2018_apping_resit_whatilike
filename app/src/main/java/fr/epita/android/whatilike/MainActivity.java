@@ -1,5 +1,6 @@
 package fr.epita.android.whatilike;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,14 +30,13 @@ public class MainActivity extends AppCompatActivity {
         myListView.setAdapter(thingAdapter);
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int itemPosition = position;
-                Thing clickedThing = (Thing) myListView.getItemAtPosition(position);
-
-                Toast.makeText(getApplicationContext(),
-                        "Position :" + itemPosition + "  ListItem : " + clickedThing.getName(), Toast.LENGTH_LONG)
-                        .show();
-            }});
+            public void onItemClick(AdapterView<?> arg0, View v, int pos,
+                                    long id) {
+                Intent i = new Intent(getApplicationContext(), DetailActivity.class);
+                i.putExtra("Position", pos);
+                startActivity(i);
+            }
+        });
         thingAdapter.addAll(myList);
     }
 
@@ -46,9 +47,8 @@ public class MainActivity extends AppCompatActivity {
         myList.add(new Thing("La SNCF", "Bunch of incompetent people", "sncf",false));
         myList.add(new Thing("La Vaporwave", "Vaporwave is a microgenre of electronic music and an Internet meme that emerged in the early 2010s", "vaporwave",true));
         myList.add(new Thing("Bitcoin", "A cryptocurrency", "btc",true));
-        myList.add(new Thing("Rick & Morty", "The best anime show so far", "R&M",true));
+        myList.add(new Thing("Rick & Morty", "The best anime show so far", "rick_and_morty",true));
         myList.add(new Thing("Kenan Lejosne", "A useless student", "kenan",false));
         myList.add(new Thing("Annecy", "The most beautifull city in France", "annecy",true));
-
     }
 }

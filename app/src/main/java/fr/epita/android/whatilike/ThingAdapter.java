@@ -10,7 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-class ThingAdapter extends ArrayAdapter<Thing> {
+import java.io.Serializable;
+
+class ThingAdapter extends ArrayAdapter<Thing> implements Serializable {
 
     public ThingAdapter(@NonNull Context context, int resource) {
         super(context, resource);
@@ -26,11 +28,15 @@ class ThingAdapter extends ArrayAdapter<Thing> {
 
         Thing currentThing = getItem(position);
 
-        ImageView thumb = view.findViewById(R.id.thumbImageView);
+        ImageView preview = view.findViewById(R.id.previewImageView);
         TextView name = view.findViewById(R.id.nameTextView);
+        ImageView thumb = view.findViewById(R.id.thumbImageView);
 
         name.setText(String.valueOf(currentThing.getName()));
-        thumb.setImageResource(getContext().getResources().getIdentifier(currentThing.getUri(), "drawable", getContext().getPackageName()));
+        preview.setImageResource(getContext().getResources().getIdentifier(currentThing.getUri(), "drawable", getContext().getPackageName()));
+        String thumImage = currentThing.isLike() ? "ic_thumb_up" : "ic_thumb_down";
+        thumb.setImageResource(getContext().getResources().getIdentifier(thumImage, "drawable", getContext().getPackageName()));
+
         return view;
     }
 }
