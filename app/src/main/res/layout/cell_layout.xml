@@ -13,11 +13,11 @@
 
         <ImageView
             android:id="@+id/thumbImageView"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            android:src="@drawable/ic_question_mark" />
 
         <TextView
             android:id="@+id/nameTextView"

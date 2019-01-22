@@ -30,6 +30,7 @@ class ThingAdapter extends ArrayAdapter<Thing> {
         TextView name = view.findViewById(R.id.nameTextView);
 
         name.setText(String.valueOf(currentThing.getName()));
+        thumb.setImageResource(getContext().getResources().getIdentifier(currentThing.getUri(), "drawable", getContext().getPackageName()));
         return view;
     }
 }

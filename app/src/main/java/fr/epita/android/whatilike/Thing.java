@@ -3,15 +3,24 @@ package fr.epita.android.whatilike;
 import java.util.ArrayList;
 
 class Thing {
-    private ArrayList<Thing> myList;
     private String name;
+    private String uri;
     private String description;
     private boolean like;
 
-    public Thing(String name, String description, boolean like) {
+    public Thing(String name, String description, String uri, boolean like) {
         this.name = name;
         this.description = description;
+        this.uri = uri;
         this.like = like;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 
     public String getName() {
